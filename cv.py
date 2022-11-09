@@ -12,7 +12,8 @@ letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O',
 
 while True:
     _, frame = cap.read()
-
+    print(type(frame))
+    break
     k = cv2.waitKey(1) # display a frame for 1 ms
     cv2.imshow('Video', frame)
     
