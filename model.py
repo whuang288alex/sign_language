@@ -60,10 +60,3 @@ class ConvNeuralNet(nn.Module):
         return out
 
 
-inputs = torch.randn(1, 1, 28, 28)
-model = ConvNeuralNet()
-outputs = model(inputs)
-
-print(outputs.shape)
-
-
