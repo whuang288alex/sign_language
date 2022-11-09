@@ -20,6 +20,7 @@ class CustomDataset(Dataset):
         image = self.imgs.iloc[idx]
         label = self.labels.iloc[idx]
         
+        print("idx:{} label:{}".format(idx, label-1))
         array = np.array(image, dtype=np.uint8).reshape(28,28)
         image = Image.fromarray(array)
         

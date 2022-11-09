@@ -27,7 +27,6 @@ def train_model(model, train_loader, optimizer, criterion, epoch):
     model.train()
     train_loss = 0.0
     for input, target in tqdm(train_loader, total=len(train_loader)):
-       
         # 1) zero the parameter gradients
         optimizer.zero_grad()
         
@@ -86,7 +85,6 @@ def main(args):
     train_df = CustomDataset("./sign_lang_mnist/sign_mnist_train.csv",transform)
     test_df = CustomDataset("./sign_lang_mnist/sign_mnist_test.csv",transform)
 
-    
     train_loader = torch.utils.data.DataLoader(train_df, batch_size=args.batch_size, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_df, batch_size=args.batch_size, shuffle=False)
 
