@@ -51,7 +51,7 @@ def test_model(model, test_loader, epoch):
     correct = 0
     with torch.no_grad():
         for input, target in test_loader:
-            output, _ = model(input)
+            output = model(input)
             pred = output.max(1, keepdim=True)[1]
             correct += pred.eq(target.view_as(pred)).sum().item()
 
@@ -88,6 +88,7 @@ def main(args):
     train_loader = torch.utils.data.DataLoader(train_df, batch_size=args.batch_size, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_df, batch_size=args.batch_size, shuffle=False)
 
+    best_acc = 0.0
     start_epoch = 0
     for epoch in range(start_epoch, args.epochs):
         # train model for 1 epoch

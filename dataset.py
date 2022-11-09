@@ -19,8 +19,6 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         image = self.imgs.iloc[idx]
         label = self.labels.iloc[idx]
-        
-        print("idx:{} label:{}".format(idx, label-1))
         array = np.array(image, dtype=np.uint8).reshape(28,28)
         image = Image.fromarray(array)
         
@@ -32,6 +30,6 @@ class CustomDataset(Dataset):
 
 '''
 df = CustomDataset("./sign_lang_mnist/sign_mnist_test.csv")
-img, label = df[0]
-print(img, "\nlabel:", label)
+labels = df.labels
+print(df.labels)
 '''
