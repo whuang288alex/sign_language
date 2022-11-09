@@ -1,4 +1,5 @@
 # system import
+import os
 import argparse
 from tqdm import tqdm
 # torch import
@@ -159,8 +160,6 @@ def main(args):
     
     torch.save(model.state_dict(), "./model.pt")
     print("Finished Training")
-
-
 
 
 if __name__ == '__main__':
