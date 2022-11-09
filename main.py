@@ -13,6 +13,8 @@ import os
 import pandas as pd
 from torchvision.io import read_image
 
+# import model
+from model import ConvNeuralNet
 
 def train_model(model, train_loader, optimizer, criterion, epoch):
     """
