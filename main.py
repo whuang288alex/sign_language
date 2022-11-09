@@ -13,7 +13,7 @@ import os
 import pandas as pd
 from torchvision.io import read_image
 
-# import model
+from dataset import CustomDataset
 from model import ConvNeuralNet
 
 def train_model(model, train_loader, optimizer, criterion, epoch):
@@ -32,7 +32,7 @@ def train_model(model, train_loader, optimizer, criterion, epoch):
         optimizer.zero_grad()
         
         # 2) forward + backward + optimize
-        output, _ = model(input)
+        output = model(input)
         loss = criterion(output, target)
         loss.backward()
         optimizer.step()
@@ -80,33 +80,33 @@ def main(args):
     training_criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
 
-    train_df = pd.read_csv("./sign_lang_mnist/sign_mnist_test.csv")
-    test_df = pd.read_csv("./sign_lang_mnist/sign_mnist_test.csv")
+    transform = transforms.Compose(
+        [transforms.ToTensor()])
+    
+    train_df = CustomDataset("./sign_lang_mnist/sign_mnist_train.csv",transform)
+    test_df = CustomDataset("./sign_lang_mnist/sign_mnist_test.csv",transform)
 
-    # transform = transforms.Compose(
-    #     [transforms.ToTensor(),
-    #     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-
+    
     train_loader = torch.utils.data.DataLoader(train_df, batch_size=args.batch_size, shuffle=True)
     test_loader = torch.utils.data.DataLoader(test_df, batch_size=args.batch_size, shuffle=False)
 
-    # start_epoch = 0
-    # for epoch in range(start_epoch, args.epochs):
-    #     # train model for 1 epoch
-    #     train_model(model, train_loader, optimizer, training_criterion, epoch)
-    #     # evaluate the model on test_set after this epoch
-    #     acc = test_model(model, test_loader, epoch)
-    #     # save the current checkpoint
-    #     save_checkpoint({
-    #         'epoch': epoch + 1,
-    #         'state_dict': model.state_dict(),
-    #         'best_acc' : max(best_acc, acc),
-    #         'optimizer' : optimizer.state_dict(),
-    #         }, (acc > best_acc))
-    #     best_acc = max(best_acc, acc)
+    start_epoch = 0
+    for epoch in range(start_epoch, args.epochs):
+        # train model for 1 epoch
+        train_model(model, train_loader, optimizer, training_criterion, epoch)
+        # evaluate the model on test_set after this epoch
+        acc = test_model(model, test_loader, epoch)
+        # save the current checkpoint
+        save_checkpoint({
+            'epoch': epoch + 1,
+            'state_dict': model.state_dict(),
+            'best_acc' : max(best_acc, acc),
+            'optimizer' : optimizer.state_dict(),
+            }, (acc > best_acc))
+        best_acc = max(best_acc, acc)
     
-    # torch.save(model.state_dict(), "./model.pt")
-    # print("Finished Training")
+    torch.save(model.state_dict(), "./model.pt")
+    print("Finished Training")
 
 
 if __name__ == '__main__':

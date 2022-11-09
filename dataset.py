@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 from torch.utils.data import Dataset
+import numpy as np
+from PIL import Image
 
 class CustomDataset(Dataset):
     
@@ -17,6 +19,10 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         image = self.imgs.iloc[idx]
         label = self.labels.iloc[idx]
+        
+        array = np.array(image, dtype=np.uint8).reshape(28,28)
+        image = Image.fromarray(array)
+        
         if self.transform:
             image = self.transform(image)
         if self.target_transform:
