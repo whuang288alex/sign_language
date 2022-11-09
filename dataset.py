@@ -31,6 +31,6 @@ class CustomDataset(Dataset):
 
 '''
 df = CustomDataset("./sign_lang_mnist/sign_mnist_test.csv")
-img, label = df[0]
-print(img, "\nlabel:", label)
+labels = df.labels
+print(df.labels)
 '''
