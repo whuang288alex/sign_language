@@ -28,7 +28,7 @@ class ConvNeuralNet(nn.Module):
         # fully connected layers
         self.fc1 = nn.Linear(25, 512)
         self.dropout2 = nn.Dropout(0.3)
-        self.fc2 = nn.Linear(512, 25)
+        self.fc2 = nn.Linear(512, 26)
         
             
     # Progresses data across layers    
