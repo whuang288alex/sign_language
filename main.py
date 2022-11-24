@@ -29,7 +29,6 @@ def train_model(model, train_loader, optimizer, criterion, epoch):
     for input, target in tqdm(train_loader, total=len(train_loader)):
         # 1) zero the parameter gradients
         optimizer.zero_grad()
-        print(input.shape)
         # 2) forward + backward + optimize
         output = model(input)
         loss = criterion(output, target)
