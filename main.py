@@ -1,43 +1,39 @@
 # system import
-import argparse
 from tqdm import tqdm
+import os
 
 # torch import
+import pandas as pd
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
-import pandas as pd
-import os
-import pandas as pd
 from torchvision.io import read_image
 
-from dataset import CustomDataset
+# data and model import
+from dataset import ASLDataset
 from model import ConvNeuralNet
 
+device = "cuda"
+epochs = 20
+learning_rate = 0.001
+batch_size = 128
+train_data_path = "../input/sign-language-mnist/sign_mnist_train/sign_mnist_train.csv"
+test_data_path = "../input/sign-language-mnist/sign_mnist_test/sign_mnist_test.csv"
+
 def train_model(model, train_loader, optimizer, criterion, epoch):
-    """
-    model (torch.nn.module): The model created to train
-    train_loader (pytorch data loader): Training data loader
-    optimizer (optimizer.*): A instance of some sort of optimizer, usually SGD
-    criterion (nn.CrossEntropyLoss) : Loss function used to train the network
-    epoch (int): Current epoch number
-    """
     model.train()
     train_loss = 0.0
     for input, target in tqdm(train_loader, total=len(train_loader)):
         # 1) zero the parameter gradients
         optimizer.zero_grad()
         # 2) forward + backward + optimize
-        output = model(input)
-        loss = criterion(output, target)
+        output = model(input.to(device))
+        loss = criterion(output.to(device), target.to(device))
         loss.backward()
         optimizer.step()
 
-        # Update the train_loss variable
-        # .item() detaches the node from the computational graph
-        # Uncomment the below line after you fill block 1 and 2
         train_loss += loss.item()
 
     train_loss /= len(train_loader)
@@ -50,73 +46,45 @@ def test_model(model, test_loader, epoch):
     correct = 0
     with torch.no_grad():
         for input, target in test_loader:
-            output = model(input)
-            pred = output.max(1, keepdim=True)[1]
-            correct += pred.eq(target.view_as(pred)).sum().item()
+            output = model(input.to(device))
+            # softmax to get probability
+            predicted = torch.softmax(output,dim=1) 
+            # get predicted labels of test data
+            _, predicted = torch.max(predicted, 1) 
+            # remove cuda label
+            predicted = predicted.data.cpu() 
+            
+            correct += target.eq(predicted).sum().item()
 
     test_acc = correct / len(test_loader.dataset)
-    print('[Test set] Epoch: {:d}, Accuracy: {:.2f}%\n'.format(
-        epoch+1, 100. * test_acc))
+    print('[Test set] Epoch: {:d}, Accuracy: {:.2f}%\n'.format(epoch+1, 100. * test_acc))
 
     return test_acc
 
-def save_checkpoint(state, is_best,
-                    file_folder="./outputs/",
-                    filename='checkpoint.pth.tar'):
-    """save checkpoint"""
-    if not os.path.exists(file_folder):
-        os.makedirs(os.path.expanduser(file_folder), exist_ok=True)
-    torch.save(state, os.path.join(file_folder, filename))
-    if is_best:
-        # skip the optimization state
-        state.pop('optimizer', None)
-        torch.save(state, os.path.join(file_folder, 'model_best.pth.tar'))
+def main():
+    train_df = ASLDataset(train_data_path)
+    test_df = ASLDataset(test_data_path)
 
-def main(args):
+    train_loader = torch.utils.data.DataLoader(train_df, batch_size=batch_size, shuffle=True)
+    test_loader = torch.utils.data.DataLoader(test_df, batch_size=64, shuffle=False)
+
     model = ConvNeuralNet()
+    model = model.to(device)
 
-    training_criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=args.lr)
-
-    transform = transforms.Compose(
-        [transforms.ToTensor()])
+    criterion = nn.CrossEntropyLoss().to(device)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+    # scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=2, factor=0.5, verbose= True, min_lr=1e-6)
     
-    train_df = CustomDataset("./sign_lang_mnist/sign_mnist_train.csv",transform)
-    test_df = CustomDataset("./sign_lang_mnist/sign_mnist_test.csv",transform)
-
-    train_loader = torch.utils.data.DataLoader(train_df, batch_size=args.batch_size, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_df, batch_size=args.batch_size, shuffle=False)
-
     best_acc = 0.0
     start_epoch = 0
-    for epoch in range(start_epoch, args.epochs):
+    for epoch in range(start_epoch, epochs):
         # train model for 1 epoch
-        train_model(model, train_loader, optimizer, training_criterion, epoch)
+        train_model(model, train_loader, optimizer, criterion, epoch)
         # evaluate the model on test_set after this epoch
         acc = test_model(model, test_loader, epoch)
-        # save the current checkpoint
-        save_checkpoint({
-            'epoch': epoch + 1,
-            'state_dict': model.state_dict(),
-            'best_acc' : max(best_acc, acc),
-            'optimizer' : optimizer.state_dict(),
-            }, (acc > best_acc))
         best_acc = max(best_acc, acc)
     
     torch.save(model.state_dict(), "./model.pt")
     print("Finished Training")
 
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Image Classification using Pytorch')
-    parser.add_argument('--epochs', default=10, type=int, metavar='N',
-                        help='number of total epochs to run')
-    parser.add_argument('--lr', default=0.001, type=float,
-                        metavar='LR', help='initial learning rate', dest='lr')
-    parser.add_argument('--batch-size', default=32, type=int, metavar='N',
-                        help='number of images within a mini-batch')
-    parser.add_argument('--resume', default='', type=str, metavar='PATH',
-                        help='path to latest checkpoint (default: none)')
-    args = parser.parse_args()
-    main(args)
-
+main()
