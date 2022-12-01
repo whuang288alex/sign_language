@@ -87,4 +87,5 @@ def main():
     torch.save(model.state_dict(), "./model.pt")
     print("Finished Training")
 
-main()
+if __name__ ==  '__main__':
+    main()
