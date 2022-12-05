@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+
 class ConvNeuralNet(nn.Module):
     def __init__(self):
         super(ConvNeuralNet, self).__init__()

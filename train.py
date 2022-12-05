@@ -1,5 +1,4 @@
 # system import
-from tqdm import tqdm
 import os
 
 # torch import
@@ -10,6 +9,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torchvision.io import read_image
+from tqdm import tqdm
 
 # data and model import
 from dataset import ASLDataset
