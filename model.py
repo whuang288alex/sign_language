@@ -51,3 +51,5 @@ class ConvNeuralNet(nn.Module):
         x = self.dropout(x)
         x = self.Linear3(x)
         return x
+
+    

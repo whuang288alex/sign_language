@@ -7,6 +7,9 @@ import numpy as np
 import torch
 import torchvision.transforms as T
 from torchvision.io import read_image
+from torchvision import models
+from torchsummary import summary
+
 
 from model import ConvNeuralNet
 
@@ -100,7 +103,7 @@ def translate():
     cap.release()
 
 if __name__ ==  '__main__':
-    translate()
-    # img = read_image(os.path.join("captured","handd.jpg"))
-    # letter = predict(img)
-    # print(letter)
+    
+    img = read_image(os.path.join("captured","handc.jpg"))
+    letter = predict(img)
+    print(summary(model, (1, 224, 224)))
