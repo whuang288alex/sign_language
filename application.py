@@ -17,9 +17,11 @@ model.eval()
 
 def predict(img):
     # transform the input image
-    img = T.Grayscale()(img)
-    img = T.Resize((224, 224))(img)
-    img = img.numpy()
+    # img = T.Grayscale()(img)
+
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    img = cv2.flip(img, 1)
+    img = cv2.resize(img, (224, 224))
     img = torch.FloatTensor(img)
     img = torch.unsqueeze(img, 0)
     img /= 255.
@@ -89,8 +91,7 @@ def translate():
 
                 # make prediction based on hand gesture and show the result
                 hand_frame = framergb[y_min:y_max, x_min:x_max]
-                hand_frame_tensor = torch.permute(torch.from_numpy(hand_frame), (2,0,1))
-                frame = cv2.putText(frame,  predict(hand_frame_tensor), (100,100),  cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3, cv2.LINE_AA)
+                frame = cv2.putText(frame,  predict(hand_frame), (100,100),  cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3, cv2.LINE_AA)
                 
                 # if capture:
                 #     cv2.imwrite(os.path.join("captured", "hand{}.jpg".format(index)), hand_frame)
@@ -100,3 +101,6 @@ def translate():
 
 if __name__ ==  '__main__':
     translate()
+    # img = read_image(os.path.join("captured","handd.jpg"))
+    # letter = predict(img)
+    # print(letter)
