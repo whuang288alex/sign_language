@@ -92,6 +92,24 @@
                 We decided to use a CNN model to identify different ASL characters. The reason for that is obvious, as CNNs are very effective in reducing the number of parameters without losing on the quality of models. Below in the overall structure of our model.
             </p>
             <img src="../img/3_model_summary.png" width="500" class="img-fluid" alt="" />
+            <p>
+               Like most CNN network, we use ReLU as activation fuction and include drop out layers in our network. We learnt this technique on this <a href="https://www.baeldung.com/cs/ml-relu-dropout-layers#:~:text=As%20a%20consequence%2C%20the%20usage,adding%20extra%20ReLUs%20increases%20linearly.">website</a>
+            </p>
+        </div>
+        <div class="container">
+            <p class="lead">
+                Training and Testing Data
+            </p>
+            <p>
+               We use the ASL character dataset on <a href="https://www.kaggle.com/datasets/datamunge/sign-language-mnist">Kaggle</a>. The dataset contains image of size 28 x 28 x 1. Below in the distribution of our training data and our testing data.
+            </p>
+            <img src="../img/4_test_distribution.png" width="500" class="img-fluid" alt="" />
+            <img src="../img/5_train_distribution.png" width="500" class="img-fluid" alt="" />
+            <img src="../img/6_train_prop.png" width="500" class="img-fluid" alt="" />
+            <img src="../img/7_test_prop.png" width="500" class="img-fluid" alt="" />
+            <p>
+                In order to use those in Pytorch, we create a custom dataset class using the tutorial found on their <a href="https://pytorch.org/tutorials/beginner/data_loading_tutorial.html"> offical website </a>
+            </p>
         </div>
       </section>
 
