@@ -1,5 +1,4 @@
 import os
-
 import cv2
 import matplotlib.pyplot as plt
 import mediapipe as mp
@@ -9,8 +8,6 @@ import torchvision.transforms as T
 from torchvision.io import read_image
 from torchvision import models
 from torchsummary import summary
-
-
 from model import ConvNeuralNet
 
 model = ConvNeuralNet()
@@ -38,7 +35,6 @@ def predict(img):
     return letters[idx]
 
 def translate():
-
     hands = mp.solutions.hands.Hands()
     mp_drawing = mp.solutions.drawing_utils
     cap = cv2.VideoCapture(0)
@@ -100,11 +96,6 @@ def translate():
                 #     index += 1    
         cv2.imshow("Frame", frame)    
     cap.release()
-
-if __name__ ==  '__main__':
     
-    # img = read_image(os.path.join("captured","handd.jpg"))
-    # letter = predict(img)
-    # print(letter)
-    # print(summary(model, (1, 224, 224)))
+if __name__ ==  '__main__':
     translate()

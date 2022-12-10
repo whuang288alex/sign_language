@@ -53,12 +53,10 @@ def test_model(model, test_loader, epoch):
             _, predicted = torch.max(predicted, 1) 
             # remove cuda label
             predicted = predicted.data.cpu() 
-            
             correct += target.eq(predicted).sum().item()
 
     test_acc = correct / len(test_loader.dataset)
     print('[Test set] Epoch: {:d}, Accuracy: {:.2f}%\n'.format(epoch+1, 100. * test_acc))
-
     return test_acc
 
 def main():
