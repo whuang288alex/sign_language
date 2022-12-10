@@ -103,6 +103,8 @@ def translate():
 
 if __name__ ==  '__main__':
     
-    img = read_image(os.path.join("captured","handc.jpg"))
-    letter = predict(img)
-    print(summary(model, (1, 224, 224)))
+    # img = read_image(os.path.join("captured","handd.jpg"))
+    # letter = predict(img)
+    # print(letter)
+    # print(summary(model, (1, 224, 224)))
+    translate()
