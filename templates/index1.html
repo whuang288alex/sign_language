@@ -23,10 +23,10 @@
                         <a href="#intro" class="nav-link">Introduction</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#method" class="nav-link">Methods</a>
+                        <a href="#dataset" class="nav-link">Dataset</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#conclusion" class="nav-link">Conclusion</a>
+                        <a href="#method" class="nav-link">Method</a>
                     </li>
                 </ul>
             </div>
@@ -45,7 +45,7 @@
             </div>
         </div>
     </section>-->
-    <!-- showcase2 -->
+    <!-- start -->
     <section class="bg-dark text-light p-5 pb-lg-0 text-center text-sm-start">
         <div class="container">
             <div class="d-sm-flex align-items-center justify-content-between">
@@ -60,58 +60,171 @@
             </div>
         </div>
     </section>
-    <!-- showcase3 -->
-    <section id="learn" class="p-5">
+    <!-- introduction  -->
+    <section id="intro" class="p-5">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md">
                     <img src="../img/2_all_hands.png" class="img-fluid" alt="" />
                 </div>
                 <div class="col-md p-5">
-                <h2>Introduction</h2>
-                <p class="lead">
-                    Why is this problem important?
-                </p>
-                <p>
-                    Sign languages are the native languages of the Deaf community and provide full access to communication. But it’s not common to the general public. By implementing computer vision techniques to achieve sign language recognition, we are trying to break the wall between the Deaf community and the General public. This will give the public access to understand and communicate with the Deaf community.
-                </p>
-                <p class="lead">
-                    Why are you interested in it?
-                </p>
-                <p>
-                    Last semester, I took a class called Music Culture across the World. From this class, I learned that there is a group of people proficient in sign language who are working as music interpreters at live concerts. They could translate different kinds of popular music like rap, classical, and jazz to ASL (American Sign Language). I was shocked by their work and I have never thought music could be translated into Gestures and Expressions. This made me more and more interested in ASL, which brings me to today's research topic.
-                </p>
+                    <h2>Problem</h2>
+                    <ul>
+                        <li>Sign languages are the <b>native languages</b> of the Deaf community.</li>
+                        <li>But it is <b>not common to the general public</b>.</li>
+                        <li>By using computer vision techniques, we are hoping to <b>break the wall</b> between the deaf community and the general public.</li>
+                    </ul>
+                    <h2>Motivation</h2>
+                    <ul>
+                        <li>We were inspired from different Music Cultures across the World</li>
+                        <li>There are music interpreters at live concerts who translate various music genres such as rap, classical and jazz to ASL</li>
+                        <li>We were shocked and never thought music could be translated into Gestures and Expressions.</li>
+                    </ul>
+                    <a href="https://youtu.be/EuD2iNVMS_4" class="btn btn-outline-danger">
+                        <i class="bi bi-youtube"></i> How sign language innovators are bringing music to the deaf?
+                    </a>
                 </div>
             </div>
         </div>
+    </section>
+    <!-- dataset section -->
+    <section id="dataset" class="p-5 bg-dark text-light">
         <div class="container">
-            <p class="lead">
-                Classification Method
-            </p>
-            <p>
-                We decided to use a CNN model to identify different ASL characters. The reason for that is obvious, as CNNs are very effective in reducing the number of parameters without losing on the quality of models. Below in the overall structure of our model.
-            </p>
-            <img src="../img/3_model_summary.png" width="500" class="img-fluid" alt="" />
-            <p>
-               Like most CNN network, we use ReLU as activation fuction and include drop out layers in our network. We learnt this technique on this <a href="https://www.baeldung.com/cs/ml-relu-dropout-layers#:~:text=As%20a%20consequence%2C%20the%20usage,adding%20extra%20ReLUs%20increases%20linearly.">website</a>
-            </p>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-5">
+                    <h1>Dataset: Sign Language MNIST</h1>
+                    <ul class="lead">
+                        <li>Label 0-25 one-to-one map for each alphabetic letter A-Z.</li>
+                        <li>No cases for 9=J or 25=Z because of gesture motions.</li>
+                        <li>27,455 cases training data and 7172 cases test data.</li>
+                    </ul>
+                    <a href="https://www.kaggle.com/datasets/datamunge/sign-language-mnist" class="btn btn-primary mt-3">
+                        <i class="bi bi-chevron-right"></i> View Dataset on Kaggle
+                    </a>
+                </div>
+                <div class="col-md">
+                    <img src="../img/amer_sign3.png" class="img-fluid" alt="" />
+                </div>
+            </div>
         </div>
+    </section>
+    <!-- distribution section -->
+    <section id="distribution" class="text-center p-5">
         <div class="container">
-            <p class="lead">
-                Training and Testing Data
-            </p>
-            <p>
-               We use the ASL character dataset on <a href="https://www.kaggle.com/datasets/datamunge/sign-language-mnist">Kaggle</a>. The dataset contains image of size 28 x 28 x 1. Below in the distribution of our training data and our testing data.
-            </p>
-            <img src="../img/4_test_distribution.png" width="500" class="img-fluid" alt="" />
-            <img src="../img/5_train_distribution.png" width="500" class="img-fluid" alt="" />
-            <img src="../img/6_train_prop.png" width="500" class="img-fluid" alt="" />
-            <img src="../img/7_test_prop.png" width="500" class="img-fluid" alt="" />
-            <p>
-                In order to use those in Pytorch, we create a custom dataset class using the tutorial found on their <a href="https://pytorch.org/tutorials/beginner/data_loading_tutorial.html"> offical website </a>
-            </p>
+            <h2><span>Dataset Distribution</span></h2>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-sm p-0">
+                    <img src="../img/5_train_distribution.png" width="500" class="img-fluid" alt="" />
+                </div>
+                <div class="col-sm p-0">
+                    <img src="../img/4_test_distribution.png" width="500" class="img-fluid" alt="" />
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-sm p-0">
+                    <img src="../img/6_train_prop.png" width="500" class="img-fluid" alt="" />
+                </div>
+                <div class="col-sm p-0">
+                    <img src="../img/7_test_prop.png" width="500" class="img-fluid" alt="" />
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
+    <!-- gif gallary -->
+    <section id="gifs" class="text-center p-5 bg-dark text-light">
+        <div class="container">
+            <h2><span>Real-time Recognition Result</span></h2>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-2">
+                    <img src="../img/gif/B.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/C.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/F.gif" class="img-fluid" alt="" />
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-2">
+                    <img src="../img/gif/L.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/Q.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/P.gif" class="img-fluid" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- method -->
+    <section id="method" class="p-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-5">
+                    <h2>Classification Method</h2>
+                    <ul class="lead">
+                        <li>We use a CNN model to identify different ASL characters.</li>
+                        <li>CNNs are very effective in reducing the number of parameters without losing on the quality of models.</li>
+                        <li>We use ReLU as activation fuction and include drop out layers in our network.</li>
+                    </ul>
+                    <a href="https://github.com/whuang288alex/sign_language/" class="btn btn-outline-dark mt-3">
+                        <i class="bi bi-github"></i> Github
+                    </a>
+                </div>
+                <div class="col-md">
+                    <img src="../img/3_model_summary.png" width="500" class="img-fluid" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- question -->
+    <section id="questions" class="p-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+            <div class="accordion accordion-flush" id="questions">
+                <!-- Item 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-one">
+                            Why Using ReLU instead of Sigmoidal Functions?
+                        </button>
+                    </h2>
+                    <div id="question-one" class="accordion-collapse collapse" data-bs-parent="#questions">
+                        <div class="accordion-body">
+                            Like most CNN network,  We learnt this technique on this 
+                            <a href="https://www.baeldung.com/cs/ml-relu-dropout-layers#:~:text=As%20a%20consequence%2C%20the%20usage,adding%20extra%20ReLUs%20increases%20linearly.">website</a>.
+                        </div>
+                    </div>
+                </div>     
+                <!-- Item 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-2">
+                            How to load customized dataset in PyTorch?
+                        </button>
+                    </h2>
+                    <div id="question-2" class="accordion-collapse collapse" data-bs-parent="#questions">
+                        <div class="accordion-body">
+                            In order to use those in Pytorch, we create a custom dataset class using the tutorial found on their 
+                            <a href="https://pytorch.org/tutorials/beginner/data_loading_tutorial.html"> offical website </a>.
+                        </div>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+        <div class="container">
+            <p>Copyright &copy; 2022 Alex Huang & Xizheng Yu</p>
+    
+            <a href="#" class="position-absolute bottom-0 end-0 p-5">
+                <i class="bi bi-arrow-up-circle h1"></i>
+            </a>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
