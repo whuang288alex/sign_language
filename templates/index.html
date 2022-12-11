@@ -28,35 +28,69 @@
                     <li class="nav-item">
                         <a href="#method" class="nav-link">Method</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#questions" class="nav-link">Questions</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- showcase1 
-    <section class="bg-dark text-light pb-5 pb-lg-0 text-center">
-        <div class="container">
-            <div>
-                <div>
-                    <h1>Sign Language Detection</h1>
-                    <p>Alex Huang, Xizheng Yu</p>
-                    <p>We use computer vision techniques to recognize hand gestures.</p>
-                </div>
-                <div><img class="" src="../img/1_hands.png"/></div>
-            </div>
-        </div>
-    </section>-->
     <!-- start -->
     <section class="bg-dark text-light p-5 pb-lg-0 text-center text-sm-start">
         <div class="container">
             <div class="d-sm-flex align-items-center justify-content-between">
                 <div>
                     <h1><span class="text-warning">Sign Language </span>Detection</h1>
-                        <p class="lead my-4">
-                            CS639 Computer Vision FA22 Final Project<br>
-                            Alex Huang (whuang288@wisc.edu), Xizheng Yu (xyu354@wisc.edu)
-                        </p>
+                    <p class="lead my-4">
+                        CS639 Computer Vision FA22 Final Project<br>
+                        Alex Huang (whuang288@wisc.edu), Xizheng Yu (xyu354@wisc.edu)
+                    </p>
+                    <a href="https://github.com/whuang288alex/sign_language/" class="btn btn-outline-light mt-3">
+                        <i class="bi bi-github"></i> Github
+                    </a>
                 </div>
                 <img class="img-fluid w-50 d-none d-sm-block" src="../img/1_hands.png" alt=""/>
+            </div>
+        </div>
+    </section>
+    <!-- presentation video -->
+    <section id="distribution" class="text-center p-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-2">
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTTrg9zh1rq2_47lQpo7c4wtyhx5MVJ_xWYcE6SWItGdDdRY06NIIe5dxJKVZ5lohRk-Qsn3ZQSoeYF/embed?start=false&loop=false&delayms=3000" frameborder="0" width="630" height="375" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+                <div class="col-md p-2">
+                    <iframe width="630" height="375" src="https://www.youtube.com/embed/1lxrb_ezP-g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- gif gallary -->
+    <section id="gifs" class="text-center p-5 bg-dark text-light">
+        <div class="container">
+            <h2><span>Real-time Recognition Result</span></h2>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-2">
+                    <img src="../img/gif/B.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/C.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/F.gif" class="img-fluid" alt="" />
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-2">
+                    <img src="../img/gif/L.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/Q.gif" class="img-fluid" alt="" />
+                </div>
+                <div class="col-md p-2">
+                    <img src="../img/gif/P.gif" class="img-fluid" alt="" />
+                </div>
             </div>
         </div>
     </section>
@@ -68,17 +102,17 @@
                     <img src="../img/2_all_hands.png" class="img-fluid" alt="" />
                 </div>
                 <div class="col-md p-5">
-                    <h2>Problem</h2>
-                    <ul>
-                        <li>Sign languages are the <b>native languages</b> of the Deaf community.</li>
-                        <li>But it is <b>not common to the general public</b>.</li>
-                        <li>By using computer vision techniques, we are hoping to <b>break the wall</b> between the deaf community and the general public.</li>
-                    </ul>
                     <h2>Motivation</h2>
                     <ul>
                         <li>We were inspired from different Music Cultures across the World</li>
                         <li>There are music interpreters at live concerts who translate various music genres such as rap, classical and jazz to ASL</li>
                         <li>We were shocked and never thought music could be translated into Gestures and Expressions.</li>
+                    </ul>
+                    <h2>Problem</h2>
+                    <ul>
+                        <li>Sign languages are the <b>native languages</b> of the Deaf community.</li>
+                        <li>But it is <b>not common to the general public</b>.</li>
+                        <li>By using computer vision techniques, we are hoping to <b>break the wall</b> between the deaf community and the general public.</li>
                     </ul>
                     <a href="https://youtu.be/EuD2iNVMS_4" class="btn btn-outline-danger">
                         <i class="bi bi-youtube"></i> How sign language innovators are bringing music to the deaf?
@@ -126,34 +160,6 @@
                 </div>
                 <div class="col-sm p-0">
                     <img src="../img/7_test_prop.png" width="500" class="img-fluid" alt="" />
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- gif gallary -->
-    <section id="gifs" class="text-center p-5 bg-dark text-light">
-        <div class="container">
-            <h2><span>Real-time Recognition Result</span></h2>
-            <div class="row align-items-center justify-content-between">
-                <div class="col-md p-2">
-                    <img src="../img/gif/B.gif" class="img-fluid" alt="" />
-                </div>
-                <div class="col-md p-2">
-                    <img src="../img/gif/C.gif" class="img-fluid" alt="" />
-                </div>
-                <div class="col-md p-2">
-                    <img src="../img/gif/F.gif" class="img-fluid" alt="" />
-                </div>
-            </div>
-            <div class="row align-items-center justify-content-between">
-                <div class="col-md p-2">
-                    <img src="../img/gif/L.gif" class="img-fluid" alt="" />
-                </div>
-                <div class="col-md p-2">
-                    <img src="../img/gif/Q.gif" class="img-fluid" alt="" />
-                </div>
-                <div class="col-md p-2">
-                    <img src="../img/gif/P.gif" class="img-fluid" alt="" />
                 </div>
             </div>
         </div>
