@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- navbar section -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
         <div class="container">
             <a href="#" class="navbar-brand">Sign Language Detection</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
@@ -19,6 +19,9 @@
 
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="#gifs" class="nav-link">Result</a>
+                    </li>
                     <li class="nav-item">
                         <a href="#intro" class="nav-link">Introduction</a>
                     </li>
@@ -29,24 +32,32 @@
                         <a href="#method" class="nav-link">Method</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#questions" class="nav-link">Questions</a>
+                        <a href="#cite" class="nav-link">Citation</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <section class="bg-dark">
+        <h1></h1><br>
+        <h1></h1>
+    </section>
     <!-- start -->
-    <section class="bg-dark text-light p-5 pb-lg-0 text-center text-sm-start">
+    <section class="bg-dark text-light p-5 pb-lg-0 pt-lg-10 text-center text-sm-start">
         <div class="container">
             <div class="d-sm-flex align-items-center justify-content-between">
                 <div>
                     <h1><span class="text-warning">Sign Language </span>Detection</h1>
                     <p class="lead my-4">
                         CS639 Computer Vision FA22 Final Project<br>
-                        Alex Huang (whuang288@wisc.edu), Xizheng Yu (xyu354@wisc.edu)
+                        Alex Huang (whuang288@wisc.edu)<br>
+                        Xizheng Yu (xyu354@wisc.edu)
                     </p>
-                    <a href="https://github.com/whuang288alex/sign_language/" class="btn btn-outline-light mt-3">
-                        <i class="bi bi-github"></i> Github
+                    <a href="https://github.com/whuang288alex/sign_language/" class="btn btn-outline-light btn-lg mt-3">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <a href="https://youtu.be/JhRWBNDdwL0" class="btn btn-danger btn-lg mt-3">
+                        <i class="bi bi-youtube"></i> YouTube
                     </a>
                 </div>
                 <img class="img-fluid w-50 d-none d-sm-block" src="../img/1_hands.png" alt=""/>
@@ -58,10 +69,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md p-2">
-                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTTrg9zh1rq2_47lQpo7c4wtyhx5MVJ_xWYcE6SWItGdDdRY06NIIe5dxJKVZ5lohRk-Qsn3ZQSoeYF/embed?start=false&loop=false&delayms=3000" frameborder="0" width="630" height="375" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                </div>
-                <div class="col-md p-2">
-                    <iframe width="630" height="375" src="https://www.youtube.com/embed/1lxrb_ezP-g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="980" height="420" src="https://www.youtube.com/embed/JhRWBNDdwL0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -180,15 +188,87 @@
                     </a>
                 </div>
                 <div class="col-md">
-                    <img src="../img/3_model_summary.png" width="500" class="img-fluid" alt="" />
-                </div>
-                <div class="overflow-auto" style="max-width: device-width;">
-                    <img src="../img/9_net_structure.png">
+                    <img src="../img/9_conv.png" width="500" class="img-fluid" alt="" />
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- structure -->
+    <section id="structure" class="p-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-5">
+                    <h2>Model Structure</h2>
+                    <ul class="lead">
+                        <li>Five levels of convolution layers.</li>
+                        <li>Each followed by a maxpooling layer and activated with ReLU.</li>
+                        <li>Connected a DropOut layer after five convolution groups to prevent overfitting.</li>
+                        <li>Flatten output, connect to fully connected layers, ended by a softmax layer</li>
+                    </ul>
+                </div>
+                <div class="col-md">
+                    <img src="../img/10_model_accuracy.png" width="500" class="img-fluid" alt="" />
+                </div>
+            </div>
+            <div class="overflow-auto" style="max-width: device-width;">
+                <img src="../img/9_net_structure.png">
+            </div>
+        </div>
+    </section>
+
+    <!-- tracking -->
+    <section id="track" class="p-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-5">
+                    <h2>Hand Tracking</h2>
+                    <ul class="lead">
+                        <li><b>OpenCV</b> framework and <b>MediaPipe</b> library.</li>
+                        <li>Locate hand location, cut the current frame, preprocess the hand frame, put it to omodel, predict the result, display the predicted text on our video frame.</li>
+                    </ul>
+                    <a href="https://google.github.io/mediapipe/solutions/hands" class="btn btn-outline-dark mt-3">
+                        <i class="bi bi-github"></i> MediaPipe
+                    </a>
+                </div>
+                <div class="col-md">
+                    <img src="../img/10_hand_landmarks.png" width="500" class="img-fluid" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- discussion -->
+    <section id="dis" class="p-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md p-5">
+                    <h2>Constraints</h2>
+                    <ul class="lead">
+                        <li>Although the accuracy on test data is about 95%, real time translation results are less accurate.</li>
+                        <li>The backgroud lighting and shadow might be the reason of the problem.</li>
+                    </ul>
+                    <h2>Future Improvements</h2>
+                    <ul class="lead">
+                        <li>More Data Samples and Varieties?</li>
+                        <li>Background noises, image augmentation.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- citation -->
+    <section id="cite" class="p-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Citation</h2>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">Sign Language MNIST: Drop-In Replacement for MNIST for Hand Gesture Recognition Tasks. https://www.kaggle.com/datasets/datamunge/sign-language-mnist</li>
+                <li class="list-group-item">Lugaresi, C., Tang, J., Nash, H., McClanahan, C., Uboweja, E., Hays, M., Zhang, F., Chang, C.L., Yong, M., Lee, J., Chang, W.T., Hua, W., Georg, M., & Grundmann, M.. MediaPipe: A Framework for Building Perception Pipelines. https://google.github.io/mediapipe/solutions/hands.html</li>
+                <li class="list-group-item">Baeldung, How ReLU and Dropout Layers Work in CNNs, https://www.baeldung.com/cs/ml-relu-dropout-layers#:~:text=As%20a%20consequence%2C%20the%20usage,adding%20extra%20ReLUs%20increases%20linearly</li>
+                <li class="list-group-item">Mihir Garimella, Sign Language Recognition with Advanced Computer Vision. https://towardsdatascience.com/sign-language-recognition-with-advanced-computer-vision-7b74f20f3442</li>
+                <li class="list-group-item">Adrian Rosebrock, OpenCV Stream video to web browser page. https://pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/</li>
+                </ol>
+        </div>
+    </section>
     <!-- question -->
     <section id="questions" class="p-5">
         <div class="container">
@@ -203,8 +283,11 @@
                     </h2>
                     <div id="question-one" class="accordion-collapse collapse" data-bs-parent="#questions">
                         <div class="accordion-body">
-                            Like most CNN network,  We learnt this technique on this 
-                            <a href="https://www.baeldung.com/cs/ml-relu-dropout-layers#:~:text=As%20a%20consequence%2C%20the%20usage,adding%20extra%20ReLUs%20increases%20linearly.">website</a>.
+                            1. ReLU is very simple to calculate, as it involves only a comparison between its input and the value 0.
+                            2. It also has a derivative of either 0 or 1, depending on whether its input is respectively negative or not.
+                            The latter, in particular, has important implications for backpropagation during training. It means in fact that calculating the gradient of a neuron is computationally inexpensive.
+                            Non-linear activation functions such as the sigmoidal functions, on the contrary, don’t generally have this characteristic.
+                            As a consequence, the usage of ReLU helps to prevent the exponential growth in the computation required to operate the neural network. If the CNN scales in size, the computational cost of adding extra ReLUs increases linearly.
                         </div>
                     </div>
                 </div>     
@@ -218,10 +301,25 @@
                     <div id="question-2" class="accordion-collapse collapse" data-bs-parent="#questions">
                         <div class="accordion-body">
                             In order to use those in Pytorch, we create a custom dataset class using the tutorial found on their 
-                            <a href="https://pytorch.org/tutorials/beginner/data_loading_tutorial.html"> offical website </a>.
+                            <a href="https://pytorch.org/tutorials/beginner/data_loading_tutorial.html"> offical website</a>.
                         </div>
                     </div>
                 </div>     
+                <!-- Item 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-3">
+                            How to host website with Github.io?
+                        </button>
+                    </h2>
+                    <div id="question-3" class="accordion-collapse collapse" data-bs-parent="#questions">
+                        <div class="accordion-body">
+                            In order to host a website with Github, please go to tutorial found on their 
+                            <a href="https://pages.github.com"> offical website</a>.
+                        </div>
+                    </div>
+                </div>   
+                
             </div>
         </div>
     </section>
